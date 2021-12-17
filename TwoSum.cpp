@@ -1,9 +1,9 @@
 /*
-    LeetCode: Two Sum   https://leetcode.com/problems/two-sum/
+    1. Two Sum - https://leetcode.com/problems/two-sum/
 
     Author: Elkin Narváez
     Email: elkinnarvaez2406@gmail.com
-    Last submission: 12/07/2021
+    Last submission: 12/15/2021
 */
 
 #include <stdio.h>
