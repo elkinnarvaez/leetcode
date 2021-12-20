@@ -20,11 +20,103 @@ struct ListNode {
 };
 
 class Solution {
+    private:
+        int listSize(ListNode *l){
+            int size = 0;
+            ListNode *node = l;
+            while(node != nullptr){
+                size++;
+                node = node->next;
+            }
+            return size;
+        }
     public:
+        ListNode* addTwoNumbersV1(ListNode *l1, ListNode *l2) {
+            ListNode *ans = new ListNode();
+            ListNode *ansptr = ans;
+            int n1 = listSize(l1), n2 = listSize(l2);
+            ListNode *p1, *p2;
+            if(n1 >= n2){
+                p1 = l1;
+                p2 = l2;
+            }
+            else{
+                p1 = l2;
+                p2 = l1;
+                swap(n1, n2);
+            }
+            int carry = 0, i, s;
+            for(i = 0; i < n1; i++){
+                if(i < n2){
+                    s = p1->val + p2->val + carry;
+                    p1 = p1->next;
+                    p2 = p2->next;
+                }
+                else{
+                    s = p1->val + carry;
+                    p1 = p1->next;
+                }
+                if(s >= 10){
+                    carry = 1;
+                    s = s - 10;
+                }
+                else{
+                    carry = 0;
+                }
+                ansptr->val = s;
+                if(i < n1 - 1){
+                    ansptr->next = new ListNode();
+                    ansptr = ansptr->next;
+                }
+            }
+            if(carry == 1){
+                ansptr->next = new ListNode(1);
+            }
+            return ans;
+        }
+
+        ListNode* addTwoNumbersV2(ListNode *l1, ListNode *l2) {
+            ListNode *ans = new ListNode();
+            ListNode *ansptr = ans;
+            ListNode *p1 = l1, *p2 = l2;
+            int carry = 0, i, s;
+            while(!(p1 == nullptr && p2 == nullptr)){
+                int x, y;
+                x = (p1 != nullptr) ? p1->val : 0;
+                y = (p2 != nullptr) ? p2->val : 0;
+                s = x + y + carry;
+                carry = s/10;
+                ansptr->next = new ListNode(s % 10);
+                ansptr = ansptr->next;
+                if(p1 != nullptr) p1 = p1->next;
+                if(p2 != nullptr) p2 = p2->next;
+            }
+            if(carry > 0){
+                ansptr->next = new ListNode(1);
+            }
+            return ans->next;
+        }
+
         ListNode* addTwoNumbers(ListNode *l1, ListNode *l2) {
             ListNode *ans = new ListNode();
-            
-            return ans;
+            ListNode *ansptr = ans;
+            ListNode *p1 = l1, *p2 = l2;
+            int carry = 0, i, s;
+            while(!(p1 == nullptr && p2 == nullptr)){
+                int x, y;
+                x = (p1 != nullptr) ? p1->val : 0;
+                y = (p2 != nullptr) ? p2->val : 0;
+                s = x + y + carry;
+                carry = s/10;
+                ansptr->next = new ListNode(s % 10);
+                ansptr = ansptr->next;
+                if(p1 != nullptr) p1 = p1->next;
+                if(p2 != nullptr) p2 = p2->next;
+            }
+            if(carry > 0){
+                ansptr->next = new ListNode(1);
+            }
+            return ans->next;
         }
 };
 
