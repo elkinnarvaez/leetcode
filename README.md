@@ -4,12 +4,8 @@
 
 ### Easy
 
-* 1 - Two Sum
-    
-    - Problem statement: https://leetcode.com/problems/two-sum/
+* 1 - Two Sum | https://leetcode.com/problems/two-sum/
 
 ### Medium
 
-* 2 - Add Two Numbers
-
-    - Problem statement: https://leetcode.com/problems/add-two-numbers/
+* 2 - Add Two Numbers | https://leetcode.com/problems/add-two-numbers/
